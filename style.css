@@ -86,7 +86,7 @@ nav a {
 }
 
 nav a:hover {
-    color: #e4c77b;
+    color: white;
 }
 
 
@@ -118,9 +118,8 @@ section h2 {
     background-color: white;
     text-align: center;
     padding: 55px 25px;
-    border-radius: 10px;
-    border-bottom: 4px solid #c9a64b;
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+    border-bottom: 2px solid #D9DEE5;
+    box-shadow: none;
 }
 
 .welcome h2 {
@@ -217,10 +216,9 @@ button:disabled {
 .info-card {
     background: white;
     padding: 25px;
-    border-radius: 10px;
     text-align: left;
-    border-top: 4px solid #c5a253;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    border: 1px solid #D9DEE5;
+    box-shadow: none;
 }
 
 .info-card h3 {
@@ -1057,10 +1055,9 @@ footer p {
 ================================= */
 
 .demo-notice {
-    background-color: #fff3cd;
-    color: #856404;
-    border: 2px solid #c49a36;
-    border-radius: 8px;
+    background-color: #F1F4F7;
+    color: #364152;
+    border: 1px solid #D9DEE5;
     padding: 18px 22px;
     margin: 25px auto;
     max-width: 850px;
@@ -1070,16 +1067,15 @@ footer p {
 .demo-notice strong {
     display: block;
     font-size: 18px;
-    color: #142b4a;
+    color: #183B56;
     margin-bottom: 8px;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
 }
 
 .demo-notice p {
     margin: 0;
     line-height: 1.6;
 }
-
 /* ==============================
    BALLOT REVIEW SECTION
 ================================= */
@@ -1131,6 +1127,38 @@ footer p {
 #submit-ballot {
     background-color: #142b4a;
     color: white;
+}
+
+
+
+/* =================================
+   RECTANGULAR DESIGN
+================================= */
+
+*:not(.logo) {
+    border-radius: 0 !important;
+}
+
+/* =================================
+   CLEAN, FLAT DESIGN
+================================= */
+
+* {
+    box-shadow: none !important;
+}
+
+/* =================================
+   NEUTRAL BORDER DESIGN
+================================= */
+
+.verification-box,
+.ballot-box,
+.dashboard-card,
+.management-card,
+.election-choice-card,
+.quick-access-card,
+.election-card {
+    border-color: #D9DEE5 !important;
 }
 
 /* ==============================
@@ -1438,4 +1466,37 @@ header h1 .header-location {
     text-align: center;
     margin-top: 12px;
 }
+
+.demo-notice {
+    border: 1px solid #D9DEE5 !important;
+    border-top: 1px solid #D9DEE5 !important;
+    border-bottom: 1px solid #D9DEE5 !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.demo-notice::before,
+.demo-notice::after {
+    border: none !important;
+    box-shadow: none !important;
+}
+/* Remove navigation highlight */
+
+#main-navigation a:hover,
+#main-navigation a:focus,
+#main-navigation a:active,
+#main-navigation .menu-toggle:hover,
+#main-navigation .menu-toggle:focus,
+#main-navigation .menu-toggle:active {
+    background-color: transparent !important;
+    color: white !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+}
+/* Remove mobile tap highlight */
+
+#main-navigation a,
+#main-navigation .menu-toggle {
+    -webkit-tap-highlight-color: transparent;
 }
