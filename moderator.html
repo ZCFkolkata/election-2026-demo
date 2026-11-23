@@ -39,49 +39,49 @@
 
     <main class="candidate-page">
 
-        <h2>Moderator Portal</h2>
+    <h2>Moderator Portal</h2>
 
-        <p class="candidate-subtitle">
-            Authorized access only. Please sign in to continue.
+    <p class="candidate-subtitle">
+        Sign in to explore the ZCFK Election 2026 Moderator Portal.
+    </p>
+
+    <div class="verification-box">
+
+        <h3>Moderator Login</h3>
+
+        <form id="moderator-login-form"
+              onsubmit="window.location.href='moderator-dashboard.html'; return false;">
+
+            <label for="moderator-id">Moderator ID</label>
+
+            <input
+                type="text"
+                id="moderator-id"
+                placeholder="Enter Moderator ID"
+            >
+
+            <label for="moderator-password">Password</label>
+
+            <input
+                type="password"
+                id="moderator-password"
+                placeholder="Enter Password"
+            >
+
+            <button type="submit">
+                Sign In
+            </button>
+
+        </form>
+
+        <p class="verification-note">
+            Public Demonstration Only. No actual authentication
+            or real election data is used.
         </p>
 
-        <div class="verification-box">
+    </div>
 
-            <h3>Moderator Login</h3>
-
-            <form id="moderator-login-form">
-
-                <label for="moderator-id">Moderator ID</label>
-
-                <input
-                    type="text"
-                    id="moderator-id"
-                    placeholder="Enter Moderator ID"
-                    required
-                >
-
-                <label for="moderator-password">Password</label>
-
-                <input
-                    type="password"
-                    id="moderator-password"
-                    placeholder="Enter Password"
-                    required
-                >
-
-                <button type="submit">
-                    Sign In
-                </button>
-
-            </form>
-
-            <p class="verification-note">
-                This portal is restricted to authorized election moderators.
-            </p>
-
-        </div>
-
-    </main>
+</main>
 
     <footer>
         <p>&copy; 2026 Zomi Christian Fellowship Kolkata</p>
