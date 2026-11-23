@@ -241,8 +241,40 @@ button:disabled {
 /* Mobile layout */
 
 @media (max-width: 700px) {
+   
+        /* Election Information */
+
+    #information {
+        padding: 30px 5%;
+    }
+
+    #information h2 {
+        font-size: 25px;
+        margin-bottom: 22px;
+    }
+
     .info-container {
         grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .info-card {
+        padding: 20px;
+    }
+
+    .info-card h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .info-card p,
+    .info-card li {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    .info-card ul {
+        padding-left: 18px;
     }
 }
 
@@ -536,13 +568,39 @@ footer p {
     color: #142b4a;
 }
 
-@media (max-width: 600px) {
-    .ballot-box {
-        padding: 22px;
-        margin: 25px 10px;
-    }
-}
+@media (max-width: 700px) {
 
+    /* Executive and Women's Wing Ballots */
+
+    .ballot-box {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 22px 16px;
+        margin: 25px auto;
+    }
+
+    .ballot-position {
+        margin-bottom: 20px;
+    }
+
+    .ballot-position label {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .ballot-position select {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 12px 10px;
+        font-size: 14px;
+    }
+
+    #review-ballot {
+        padding: 13px;
+        font-size: 15px;
+    }
+
+}
 
 /* ==============================
    MODERATOR DASHBOARD
@@ -882,15 +940,39 @@ footer p {
 
 @media (max-width: 700px) {
 
+    /* Quick Access Section */
+
+    .quick-access {
+        padding: 30px 5%;
+    }
+
     .quick-access-container {
         grid-template-columns: 1fr;
+        gap: 15px;
     }
 
     .quick-access h2 {
         font-size: 25px;
+        margin-bottom: 22px;
+    }
+
+    .quick-access-card {
+        padding: 20px;
+    }
+
+    .quick-access-card h3 {
+        font-size: 18px;
+        margin-bottom: 8px;
+    }
+
+    .quick-access-card p {
+        font-size: 14px;
+        line-height: 1.5;
+        margin-bottom: 15px;
     }
 
 }
+
 
 /* ==============================
    WEBSITE TRIAL ANNOUNCEMENT
@@ -998,54 +1080,362 @@ footer p {
     line-height: 1.6;
 }
 
+/* ==============================
+   BALLOT REVIEW SECTION
+================================= */
 
+#ballot-review {
+    background-color: white;
+    padding: 25px;
+    margin-top: 25px;
+    border-radius: 8px;
+    border: 1px solid #dce2e9;
+}
+
+#ballot-review h3 {
+    color: #142b4a;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#review-details {
+    background-color: #f4f6f9;
+    padding: 18px;
+    border-radius: 6px;
+    line-height: 1.8;
+    color: #444;
+}
+
+#ballot-review p {
+    text-align: center;
+    color: #555;
+    margin: 20px 0;
+}
+
+#edit-ballot,
+#submit-ballot {
+    width: 100%;
+    padding: 13px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+#edit-ballot {
+    background-color: #e5e9ef;
+    color: #142b4a;
+}
+
+#submit-ballot {
+    background-color: #142b4a;
+    color: white;
+}
 
 /* ==============================
    10. MOBILE RESPONSIVENESS
 ================================= */
 
+.menu-toggle {
+    display: none;
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+    border-radius: 6px;
+    padding: 8px 13px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
 @media (max-width: 700px) {
 
     /* Header */
-    .header-content {
+
+.header-content {
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
+    gap: 12px;
+    padding: 12px 10px 12px 5px;
+}
+
+.header-text {
+    text-align: left;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 65px;
+}
+
+.logo {
+    width: 65px;
+    height: 65px;
+    flex-shrink: 0;
+}
+
+header h1 {
+    font-size: 11px;
+    line-height: 1.2;
+    white-space: nowrap;
+    margin: 0;
+}
+
+.header-text p {
+    font-size: 11px;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.header-text .motto {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 10px;
+    font-style: italic;
+    letter-spacing: 1.2px;
+    white-space: nowrap;
+}
+
+header h1 .header-location {
+    display: block;
+    font-size: 8px;
+    font-weight: normal;
+    letter-spacing: 3px;
+    line-height: 1.5;
+    margin-top: 3px;
+}
+
+    /* Mobile Navigation */
+
+    #main-navigation {
+        display: flex;
         flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 10px 15px;
+    }
+
+    #main-navigation .menu-toggle {
+        display: block;
+        align-self: flex-end;
+    }
+
+    #main-navigation a {
+        display: none;
         text-align: center;
-        gap: 15px;
+        padding: 13px;
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
     }
 
-    .header-text {
-        text-align: center;
+    #main-navigation.active a {
+        display: block;
     }
 
-    .logo {
-        width: 110px;
-        height: 110px;
-    }
+    /* Welcome Section */
 
-    header h1 {
-        font-size: 21px;
-    }
+.welcome {
+    padding: 35px 18px;
+    border-radius: 8px;
+}
 
-    /* Navigation */
-    nav {
-        gap: 15px;
-    }
+.welcome h2 {
+    font-size: 23px;
+    line-height: 1.4;
+    margin-bottom: 15px;
+}
 
-    /* Welcome section */
-    .welcome h2 {
-        font-size: 25px;
-    }
+.welcome p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
 
-    /* Election cards */
-    .election-card {
-        width: 100%;
-        margin: 10px 0;
-    }
+    /* Election Cards */
 
+.election-sections {
+    padding: 30px 5%;
+}
+
+.election-sections h2 {
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.election-card {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 12px 0;
+    padding: 22px 15px;
+}
+
+.election-card h3 {
+    font-size: 19px;
+}
+
+.election-card p {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+    
     /* Main content */
+
     main {
         padding: 20px 12px;
     }
+
+    /* Footer */
+
+    footer {
+        padding: 18px 12px;
+        margin-top: 20px;
+    }
+
+    footer p {
+        font-size: 12px;
+        line-height: 1.6;
+    }
     
+        /* Voter Verification */
+
+    .verification-box {
+        width: 100%;
+        box-sizing: border-box;
+        margin: 25px auto;
+        padding: 22px 18px;
+    }
+
+    .verification-box h3 {
+        font-size: 21px;
+        margin-bottom: 20px;
+    }
+
+    .verification-box label {
+        font-size: 14px;
+    }
+
+    .verification-box input {
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    .verification-box .view-button {
+        display: block;
+        box-sizing: border-box;
+        width: 100%;
+        text-align: center;
+    }
+
+    .verification-note {
+        font-size: 12px;
+        line-height: 1.5;
+    }
+    
+        /* Demonstration Notice */
+
+    .demo-notice {
+        padding: 15px;
+        margin: 20px auto;
+        font-size: 13px;
+    }
+
+    .demo-notice strong {
+        font-size: 16px;
+        letter-spacing: 0.5px;
+    }
+
+    .demo-notice p {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+    
+        /* Election Choice Page */
+
+    .election-choice-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 18px;
+        margin: 25px auto;
+    }
+
+    .election-choice-card {
+        width: 100%;
+        max-width: 350px;
+        box-sizing: border-box;
+        padding: 25px 18px;
+    }
+
+    .election-choice-card h3 {
+        font-size: 19px;
+        margin-bottom: 12px;
+    }
+
+    .election-choice-card p {
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+
+    .election-choice-card .view-button {
+        display: block;
+    }
+    
+        /* Counting Tables */
+
+    .table-container {
+        margin: 20px auto 30px;
+        border-radius: 6px;
+    }
+
+    .table-container .candidate-table {
+        min-width: 900px;
+        font-size: 13px;
+    }
+
+    .table-container .candidate-table th,
+    .table-container .candidate-table td {
+        padding: 10px;
+        white-space: nowrap;
+    }
+    
+        /* Printable Paper Ballots - Mobile */
+
+    .ballot-instructions {
+        padding: 15px;
+        margin: 20px 0;
+    }
+
+    .ballot-instructions h3 {
+        font-size: 18px;
+    }
+
+    .ballot-instructions ol {
+        padding-left: 20px;
+        font-size: 13px;
+        line-height: 1.7;
+    }
+
+    .paper-ballot-heading {
+        font-size: 19px;
+        margin: 20px 0;
+    }
+
+    .paper-ballot-table {
+        min-width: 900px;
+        font-size: 13px;
+    }
+
+    .paper-ballot-table th,
+    .paper-ballot-table td {
+        padding: 10px;
+        white-space: nowrap;
+    }
+    
+    /* Counting Reports Button Spacing */
+
+.management-card .view-button {
+    display: block;
+    text-align: center;
+    margin-top: 12px;
 }
-    
+}

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voter Management | ZCFK Election 2026</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="header-content">
+            <img src="logo.png" alt="ZCFK Official Emblem" class="logo">
+
+            <div class="header-text">
+               <h1>
+    ZOMI CHRISTIAN FELLOWSHIP
+    <span class="header-location">KOLKATA</span>
+</h1>
+                <p>Election 2026 | Voter Management</p>
+                <p class="motto">"LET YOUR LIGHT SHINE"</p>
+            </div>
+        </div>
+    </header>
+
+    <nav id="main-navigation">
+
+    <button class="menu-toggle" id="menu-toggle"
+        type="button" aria-label="Toggle navigation"
+        aria-expanded="false">
+        ☰
+    </button>
+
+    <a href="moderator-dashboard.html">Dashboard</a>
+    <a href="index.html">Home</a>
+
+</nav>
+
+    <main class="candidate-page">
+
+        <h2>Voter Management</h2>
+
+        <p class="candidate-subtitle">
+            Manage eligible voters and monitor their voting entitlements.
+        </p>
+
+        <!-- VOTER STATISTICS -->
+
+        <div class="dashboard-container">
+
+            <div class="dashboard-card">
+                <h3>Total Eligible Voters</h3>
+                <p class="dashboard-number">0</p>
+            </div>
+
+            <div class="dashboard-card">
+                <h3>Executive Ballots</h3>
+                <p class="dashboard-number">0</p>
+            </div>
+
+            <div class="dashboard-card">
+                <h3>Women's Wing Ballots</h3>
+                <p class="dashboard-number">0</p>
+            </div>
+
+            <div class="dashboard-card">
+                <h3>Pending Entitlements</h3>
+                <p class="dashboard-number">0</p>
+            </div>
+
+        </div>
+
+
+        <!-- ADD VOTER -->
+
+        <h2 class="dashboard-section-title">Add Eligible Voter</h2>
+
+        <div class="verification-box">
+
+            <form id="add-voter-form">
+
+                <label for="voter-name">Voter Name</label>
+                <input
+                    type="text"
+                    id="voter-name"
+                    placeholder="Enter voter's name"
+                    required
+                >
+
+                <label for="voter-id">Voter ID</label>
+                <input
+                    type="text"
+                    id="voter-id"
+                    placeholder="Enter Voter ID"
+                    required
+                >
+
+                <button type="submit">Add Voter</button>
+
+            </form>
+
+        </div>
+
+
+        <!-- VOTER RECORDS -->
+
+        <h2 class="dashboard-section-title">Voter Records</h2>
+
+        <div class="table-container">
+
+            <table class="candidate-table">
+
+                <thead>
+                    <tr>
+                        <th>Sl. No.</th>
+                        <th>Voter Name</th>
+                        <th>Voter ID</th>
+                        <th>Executive</th>
+                        <th>Women's Wing</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody id="voter-table-body">
+
+                    <tr>
+                        <td colspan="6">
+                            No voter records available.
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Zomi Christian Fellowship Kolkata</p>
+    </footer>
+<script src="script.js"></script>
+</body>
+</html>
