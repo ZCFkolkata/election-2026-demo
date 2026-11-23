@@ -184,7 +184,14 @@ button:hover {
     background-color: #c09b3e;
     color: #102747;
 }
+/* Disabled Button Appearance */
 
+button:disabled {
+    background-color: #999 !important;
+    color: white !important;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
 
 /* ==============================
    ELECTION INFORMATION
@@ -990,6 +997,7 @@ footer p {
     margin: 0;
     line-height: 1.6;
 }
+
 
 
 /* ==============================

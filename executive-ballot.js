@@ -162,3 +162,32 @@ document.getElementById("edit-ballot").addEventListener("click", function () {
     document.getElementById("ballot-review").style.display = "none";
 
 });
+
+// Demo Ballot Submission
+
+document.getElementById("submit-ballot").addEventListener("click", function () {
+
+    const confirmSubmission = confirm(
+        "Are you sure you want to submit your ballot?"
+    );
+
+    if (!confirmSubmission) {
+        return;
+    }
+
+    alert(
+        "Demonstration Submission Successful!\n\n" +
+        "Your ballot has been submitted successfully.\n" +
+        "No actual votes have been recorded or counted."
+    );
+
+    // Disable further changes after demo submission
+
+    positions.forEach(position => {
+        document.getElementById(position).disabled = true;
+    });
+
+    document.getElementById("submit-ballot").disabled = true;
+    document.getElementById("edit-ballot").disabled = true;
+
+});
