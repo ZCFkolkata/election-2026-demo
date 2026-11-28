@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,43 +15,45 @@
 
     <!-- Website Header -->
     <header>
-    <div class="header-content">
+        <div class="header-content">
 
-        <img src="logo.png" alt="ZCFK Official Emblem" class="logo">
+            <img src="logo.png" alt="ZCFK Official Emblem" class="logo">
 
-        <div class="header-text">
-            <h1>
-    ZOMI CHRISTIAN FELLOWSHIP
-    <span class="header-location">KOLKATA</span>
-</h1>
-            <p>Election 2026 | Term 2027–2029</p>
-            <p class="motto">"LET YOUR LIGHT SHINE"</p>
+            <div class="header-text">
+                <h1>
+                    ZOMI CHRISTIAN FELLOWSHIP
+                    <span class="header-location">KOLKATA</span>
+                </h1>
+
+                <p>Election 2026 | Term 2027–2029</p>
+                <p class="motto">"LET YOUR LIGHT SHINE"</p>
+            </div>
+
         </div>
-
-    </div>
-</header>
+    </header>
 
     <!-- Main Navigation -->
     <nav id="main-navigation">
 
-    <button class="menu-toggle" id="menu-toggle"
-        type="button" aria-label="Toggle navigation"
-        aria-expanded="false">
-        ☰
-    </button>
+        <button class="menu-toggle" id="menu-toggle"
+            type="button" aria-label="Toggle navigation"
+            aria-expanded="false">
+            ☰
+        </button>
+
         <a href="#home">Home</a>
-        <a href="#election">Election</a>
         <a href="#candidates">Candidates</a>
         <a href="#information">Information</a>
-        <a href="voter.html">Voter Login</a>
         <a href="moderator.html">Moderator Login</a>
-        <a href="voting-instructions.html">Voting Instructions</a>
+
     </nav>
 
     <!-- Homepage -->
     <main>
 
+        <!-- Welcome Section -->
         <section id="home" class="welcome">
+
             <h2>Welcome to ZCFK Election 2026</h2>
 
             <p>
@@ -63,167 +66,226 @@
             </p>
 
         </section>
-        
-        <!-- QUICK ACCESS SECTION -->
 
-<section class="quick-access">
+        <!-- Voter Login Section -->
+        <section class="voter-login-section">
 
-    <h2>Quick Access</h2>
+            <p class="candidate-subtitle">
+                Please verify your eligibility before proceeding to vote.
+            </p>
 
-    <div class="quick-access-container">
+            <div class="demo-notice">
 
-        <div class="quick-access-card">
-            <h3>Voter Portal</h3>
-            <p>Verify your eligibility and access the election portal.</p>
-            <a href="voter.html" class="view-button">Access Portal</a>
-        </div>
+                <strong>DEMONSTRATION MODE</strong>
 
-        <div class="quick-access-card">
-            <h3>Voting Instructions</h3>
-            <p>Read the guidelines before participating in the election.</p>
-            <a href="voting-instructions.html" class="view-button">Read Instructions</a>
-        </div>
+                <p>
+                    This is a trial of the election website.
+                    Please use demonstration details only.
+                    No real votes will be recorded.
+                </p>
 
-        <div class="quick-access-card">
-            <h3>Executive Committee</h3>
-            <p>View the Executive Committee candidates.</p>
-            <a href="executive.html" class="view-button">View Candidates</a>
-        </div>
+            </div>
 
-        <div class="quick-access-card">
-            <h3>Women's Wing</h3>
-            <p>View the Women's Wing candidates.</p>
-            <a href="womens-wing.html" class="view-button">View Candidates</a>
-        </div>
+            <div class="verification-box">
 
-    </div>
+		<h3>Voter Login</h3>
+                <form id="voter-login-form">
 
-</section>
+                    <label for="voter-id">Voter ID</label>
 
-<!-- WEBSITE TRIAL ANNOUNCEMENT -->
+                    <input
+                        type="text"
+                        id="voter-id"
+                        placeholder="Enter your Voter ID"
+                        required
+                    >
 
-<section class="trial-announcement">
+                    <label for="voter-pin">Verification PIN</label>
 
-    <div class="trial-content">
+                    <input
+                        type="password"
+                        id="voter-pin"
+                        placeholder="Enter your PIN"
+                        required
+                    >
 
-        <h2>Website Trial Announcement</h2>
+                    <a href="election-choice.html" class="view-button">
+                        Verify & Continue
+                    </a>
 
-        <p class="trial-date">
-            24 November 2026
-        </p>
+                </form>
 
-        <p>
-            Zomi Christian Fellowship Kolkata will conduct a trial
-            of the Election 2026 website to familiarise members
-            with the online election process.
-        </p>
+                <p class="verification-note">
+                    Only eligible voters can participate in the election.
+                </p>
 
-        <p>
-            Members are invited to explore the website and test
-            its features during the trial.
-        </p>
+                <p style="text-align: center; margin-top: 15px;">
+                    Please read our
+                    <a href="voting-instructions.html">Voting Instructions</a>
+                    before proceeding.
+                </p>
 
-        <div class="trial-warning">
-            <strong>IMPORTANT:</strong>
-            This is a demonstration only. No real votes will be
-            recorded during the trial.
-        </div>
-
-        <h3>Official Election Date</h3>
-
-        <p class="official-date">
-            18 December 2026
-        </p>
-
-        <p>Term 2027–2029</p>
-
-    </div>
-
-</section>
-
-        <!-- Election Sections -->
-        <section id="election" class="election-sections">
-
-            <h2>Election Sections</h2>
-
-            <div class="election-card">
-    <h3>Executive Committee</h3>
-    <p>25 Candidates | 8 Positions</p>
-    <a href="executive.html" class="view-button">
-        View Candidates
-    </a>
-</div>
-
-<div class="election-card">
-    <h3>Women's Wing</h3>
-    <p>29 Candidates | 6 Positions</p>
-    <a href="womens-wing.html" class="view-button">
-        View Candidates
-    </a>
-</div>
+            </div>
 
         </section>
-        
 
+        <!-- Explore Candidates -->
+        <section id="candidates" class="election-sections">
+
+            <h2>Explore Candidates</h2>
+
+            <div class="election-card">
+
+                <h3>Executive Committee</h3>
+
+                <p id="executive-summary">Loading...</p>
+
+                <a href="executive.html" class="view-button">
+                    View Candidates
+                </a>
+
+            </div>
+
+            <div class="election-card">
+
+                <h3>Women's Wing</h3>
+
+                <p id="womens-summary">Loading...</p>
+
+                <a href="womens-wing.html" class="view-button">
+                    View Candidates
+                </a>
+
+            </div>
+
+        </section>
 
 
         <!-- Election Information -->
-<section id="information">
-    <h2>Election Information</h2>
+        <section id="information">
 
-    <div class="info-container">
+            <h2>Election Information</h2>
 
-        <div class="info-card">
-            <h3>Election Overview</h3>
-            <p>
-                Zomi Christian Fellowship Kolkata will conduct
-                elections for the Executive Committee and
-                Women's Wing for the term 2027–2029.
-            </p>
-        </div>
+            <div class="info-container">
 
-        <div class="info-card">
-            <h3>Voter Eligibility</h3>
-            <p>
-                All individuals included in the official
-                voter list are eligible to participate in
-                both the Executive Committee and Women's
-                Wing elections.
-            </p>
-        </div>
+                <div class="info-card">
 
-        <div class="info-card">
-            <h3>Voting Guidelines</h3>
-            <ul>
-                <li>Each eligible voter can vote in both sections.</li>
-                <li>One candidate can be selected for each position.</li>
-                <li>A selected candidate cannot be selected for another position within the same section.</li>
-                <li>Each voter can submit one complete ballot per section.</li>
-            </ul>
-        </div>
+                    <h3>Election Overview</h3>
 
-        <div class="info-card">
-            <h3>Voting Limit</h3>
-            <p>
-                Each eligible voter is permitted a maximum
-                of two ballot submissions: one for the
-                Executive Committee and one for the
-                Women's Wing.
-            </p>
-        </div>
+                    <p>
+                        Zomi Christian Fellowship Kolkata will conduct
+                        elections for the Executive Committee and
+                        Women's Wing for the term 2027–2029.
+                    </p>
 
-    </div>
-</section>
+                </div>
+
+                <div class="info-card">
+
+                    <h3>Voter Eligibility</h3>
+
+                    <p>
+                        All individuals included in the official
+                        voter list are eligible to participate in
+                        both the Executive Committee and Women's
+                        Wing elections.
+                    </p>
+
+                </div>
+
+                <div class="info-card">
+
+                    <h3>Voting Guidelines</h3>
+
+                    <ul>
+                        <li>Each eligible voter can vote in both sections.</li>
+                        <li>One candidate can be selected for each position.</li>
+                        <li>A selected candidate cannot be selected for another position within the same section.</li>
+                        <li>Each voter can submit one complete ballot per section.</li>
+                    </ul>
+
+                </div>
+
+                <div class="info-card">
+
+                    <h3>Voting Limit</h3>
+
+                    <p>
+                        Each eligible voter is permitted a maximum
+                        of two ballot submissions: one for the
+                        Executive Committee and one for the
+                        Women's Wing.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
 
     </main>
 
     <!-- Footer -->
     <footer>
+
         <p>© 2026 Zomi Christian Fellowship Kolkata</p>
+
         <p>Election Committee | Term 2027–2029</p>
+
     </footer>
 
-    <script src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
 
+<script>
+async function loadHomepageCounts() {
+
+    const executiveCandidates = await supabaseClient
+        .from("demo_candidates")
+        .select("*", { count: "exact", head: true })
+        .eq("election_category", "executive")
+        .eq("is_active", true);
+
+    const womensCandidates = await supabaseClient
+        .from("demo_candidates")
+        .select("*", { count: "exact", head: true })
+        .eq("election_category", "womens")
+        .eq("is_active", true);
+
+    const executivePositions = await supabaseClient
+        .from("demo_positions")
+        .select("*", { count: "exact", head: true })
+        .eq("election_category", "executive");
+
+    const womensPositions = await supabaseClient
+        .from("demo_positions")
+        .select("*", { count: "exact", head: true })
+        .eq("election_category", "womens");
+
+    const results = [
+        executiveCandidates,
+        womensCandidates,
+        executivePositions,
+        womensPositions
+    ];
+
+    if (results.some(result => result.error)) {
+        console.error("Homepage loading error:", results);
+        return;
+    }
+
+    document.getElementById("executive-summary").textContent =
+        executiveCandidates.count + " Candidates | " +
+        executivePositions.count + " Positions";
+
+    document.getElementById("womens-summary").textContent =
+        womensCandidates.count + " Candidates | " +
+        womensPositions.count + " Positions";
+}
+
+loadHomepageCounts();
+</script>
+
+<script src="script.js"></script>
 </body>
 </html>

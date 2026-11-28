@@ -48,7 +48,7 @@
 
     <div class="management-card">
         <h3>Executive Committee</h3>
-        <p>25 candidates registered.</p>
+        <p id="executive-count">Loading candidates...</p>
         <a href="executive.html" class="view-button">
             View Candidates
         </a>
@@ -56,7 +56,7 @@
 
     <div class="management-card">
         <h3>Women's Wing</h3>
-        <p>29 candidates registered.</p>
+        <p id="womens-count">Loading candidates...</p>
         <a href="womens-wing.html" class="view-button">
             View Candidates
         </a>
@@ -69,6 +69,43 @@
     <footer>
         <p>&copy; 2026 Zomi Christian Fellowship Kolkata</p>
     </footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script>
+async function loadCandidateCounts() {
+
+    const executiveResult = await supabaseClient
+        .from("demo_candidates")
+        .select("*", { count: "exact", head: true })
+        .eq("election_category", "executive")
+        .eq("is_active", true);
+
+    const womensResult = await supabaseClient
+        .from("demo_candidates")
+        .select("*", { count: "exact", head: true })
+        .eq("election_category", "womens")
+        .eq("is_active", true);
+
+    if (executiveResult.error || womensResult.error) {
+        document.getElementById("executive-count").textContent =
+            "Unable to load candidate count.";
+
+        document.getElementById("womens-count").textContent =
+            "Unable to load candidate count.";
+
+        console.error(executiveResult.error, womensResult.error);
+        return;
+    }
+
+    document.getElementById("executive-count").textContent =
+        executiveResult.count + " candidates registered.";
+
+    document.getElementById("womens-count").textContent =
+        womensResult.count + " candidates registered.";
+}
+
+loadCandidateCounts();
+</script>
 <script src="script.js"></script>
 </body>
 </html>

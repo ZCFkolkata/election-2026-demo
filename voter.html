@@ -51,7 +51,7 @@
     <p class="candidate-subtitle">
         Please verify your eligibility before proceeding to vote.
     </p>
-    
+
     <div class="demo-notice">
     <strong>DEMONSTRATION MODE</strong>
     <p>
@@ -83,12 +83,13 @@
                 required
             >
 
-            <a href="election-choice.html" class="view-button">
-                Verify & Continue
-           </a>
+            <button type="submit" class="view-button">
+    Verify & Continue
+</button>
+
 
         </form>
-
+	<p id="voter-login-message" class="verification-note"></p>
         <p class="verification-note">
             Only eligible voters can participate in the election.
         </p>
@@ -100,6 +101,36 @@
     <footer>
         <p>&copy; 2026 Zomi Christian Fellowship Kolkata</p>
     </footer>
+
+<script>
+document.getElementById("voter-login-form")
+.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const voterId = document.getElementById("voter-id").value.trim();
+    const pin = document.getElementById("voter-pin").value;
+    const message = document.getElementById("voter-login-message");
+
+    const validId = /^DEMO-ZCF(?:0[1-9]|[1-6][0-9]|7[01])$/.test(voterId);
+    const DEMO_PIN = "1234";
+
+    if (validId && pin === DEMO_PIN) {
+
+        message.textContent = "Demo verification successful!";
+
+        setTimeout(function() {
+            window.location.href = "election-choice.html";
+        }, 1000);
+
+    } else {
+
+        message.textContent = "Invalid Demo Voter ID or PIN. Please try again.";
+
+    }
+
+});
+</script>
 <script src="script.js"></script>
 </body>
 </html>

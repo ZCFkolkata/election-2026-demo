@@ -1,36 +1,6 @@
-// Executive Committee Candidates
-
-const candidates = [
-    "B Khupsuanthang",
-    "David Lalrawngbawl",
-    "Donglianlal Tungnung",
-    "Dongminlian Hangluah",
-    "Ginlunmang Thangngeu",
-    "Ginthianlal Khaute",
-    "Hangluah Ginsuanpau",
-    "H Khaigindam",
-    "Himanshu Khatait",
-    "Kamkhenpau Ngaihte",
-    "KK Vaiphei",
-    "Lalmelhiat Vaiphei",
-    "Lalngailian Khaute",
-    "Dr. L.Lamminthang",
-    "LM Gangte",
-    "Manglianthang Milun",
-    "N Pau Sang Mung",
-    "Paumasa",
-    "S Khupsuanthang",
-    "Sandip Chowdhury",
-    "Thangbawi Naulak",
-    "Thangzamang",
-    "T Khailalsang Gangte",
-    "T Mathew Zou",
-    "Zamkhanlal Simte"
-];
-
+// Executive Committee Ballot — Demonstration Mode
 
 // All eight ballot positions
-
 const positions = [
     "chairman",
     "vice-chairman",
@@ -43,28 +13,74 @@ const positions = [
 ];
 
 
-// Populate every dropdown
+// Load candidates from Supabase
+async function loadCandidates() {
 
-positions.forEach(position => {
+    const reviewButton = document.getElementById("review-ballot");
 
-    const dropdown = document.getElementById(position);
+    reviewButton.disabled = true;
 
-    candidates.forEach(candidate => {
+    try {
 
-        const option = document.createElement("option");
+        const { data, error } = await supabaseClient
+            .from("demo_candidates")
+            .select("candidate_name")
+            .eq("election_category", "executive")
+            .eq("is_active", true)
+            .order("candidate_name", { ascending: true });
 
-        option.value = candidate;
-        option.textContent = candidate;
+        if (error) {
+            throw error;
+        }
 
-        dropdown.appendChild(option);
+        if (!data || data.length === 0) {
+            throw new Error("No candidates are currently available.");
+        }
 
-    });
+        // Populate all eight dropdowns
 
-});
+        positions.forEach(position => {
+
+            const dropdown = document.getElementById(position);
+
+            data.forEach(candidate => {
+
+                const option = document.createElement("option");
+
+                option.value = candidate.candidate_name;
+                option.textContent = candidate.candidate_name;
+
+                dropdown.appendChild(option);
+
+            });
+
+        });
+
+        // Enable ballot after successful loading
+        reviewButton.disabled = false;
+
+        // Listen for changes in every dropdown
+        positions.forEach(position => {
+
+            document.getElementById(position).addEventListener(
+                "change",
+                updateDropdowns
+            );
+
+        });
+
+    } catch (error) {
+
+        console.error("Candidate loading error:", error);
+
+        alert("Unable to load candidates from the database. Please refresh the page.");
+
+    }
+
+}
 
 
 // Prevent duplicate candidate selections
-
 function updateDropdowns() {
 
     const selectedCandidates = positions.map(position =>
@@ -90,27 +106,13 @@ function updateDropdowns() {
 }
 
 
-
-// Listen for changes in every dropdown
-
-positions.forEach(position => {
-
-    document.getElementById(position).addEventListener(
-        "change",
-        updateDropdowns
-    );
-
-});
-
 // Review Ballot
-
 document.getElementById("review-ballot").addEventListener("click", function () {
 
     const reviewSection = document.getElementById("ballot-review");
     const reviewDetails = document.getElementById("review-details");
 
     // Check whether all positions are filled
-
     for (const position of positions) {
 
         const dropdown = document.getElementById(position);
@@ -123,8 +125,7 @@ document.getElementById("review-ballot").addEventListener("click", function () {
 
     }
 
-    // Prepare the review details
-
+    // Prepare review details
     reviewDetails.innerHTML = "";
 
     positions.forEach(position => {
@@ -143,8 +144,7 @@ document.getElementById("review-ballot").addEventListener("click", function () {
 
     });
 
-    // Display the review section
-
+    // Display review section
     reviewSection.style.display = "block";
 
     reviewSection.scrollIntoView({
@@ -155,39 +155,72 @@ document.getElementById("review-ballot").addEventListener("click", function () {
 });
 
 
-// Allow voters to edit their selections
-
+// Allow editing selections
 document.getElementById("edit-ballot").addEventListener("click", function () {
 
     document.getElementById("ballot-review").style.display = "none";
 
 });
 
-// Demo Ballot Submission
+// Submit Executive Ballot
+document.getElementById("submit-ballot").addEventListener("click", async function () {
 
-document.getElementById("submit-ballot").addEventListener("click", function () {
+    const submitButton = this;
 
-    const confirmSubmission = confirm(
-        "Are you sure you want to submit your ballot?"
-    );
+    // Collect selected candidates
+    const selections = {};
 
-    if (!confirmSubmission) {
-        return;
+    for (const position of positions) {
+
+        const dropdown = document.getElementById(position);
+
+        if (dropdown.value === "") {
+            alert("Please complete all eight positions.");
+            return;
+        }
+
+        selections[position] = dropdown.value;
     }
 
-    alert(
-        "Demonstration Submission Successful!\n\n" +
-        "Your ballot has been submitted successfully.\n" +
-        "No actual votes have been recorded or counted."
-    );
+    // Prevent duplicate submissions from repeated clicks
+    submitButton.disabled = true;
+    submitButton.textContent = "Submitting...";
 
-    // Disable further changes after demo submission
+    try {
 
-    positions.forEach(position => {
-        document.getElementById(position).disabled = true;
-    });
+        const { error } = await supabaseClient
+            .from("demo_submissions")
+            .insert({
+                election_category: "executive",
+                selections: selections
+            });
 
-    document.getElementById("submit-ballot").disabled = true;
-    document.getElementById("edit-ballot").disabled = true;
+        if (error) {
+            throw error;
+        }
+
+        alert("Your selections have been submitted successfully!");
+
+        // Lock the ballot after successful submission
+        positions.forEach(position => {
+            document.getElementById(position).disabled = true;
+        });
+
+        document.getElementById("edit-ballot").disabled = true;
+        submitButton.textContent = "Submitted";
+
+    } catch (error) {
+
+        console.error("Submission error:", error);
+
+        alert("Unable to submit your selections. Please try again.");
+
+        submitButton.disabled = false;
+        submitButton.textContent = "Submit Ballot";
+
+    }
 
 });
+
+// Start loading candidates
+loadCandidates();

@@ -50,29 +50,46 @@
 
             <div class="dashboard-card">
                 <h3>Executive Committee</h3>
-                <p class="dashboard-number">25</p>
+                <p class="dashboard-number" id="executive-count">Loading...</p>
                 <p>Candidates</p>
             </div>
 
             <div class="dashboard-card">
                 <h3>Women's Wing</h3>
-                <p class="dashboard-number">29</p>
+                <p class="dashboard-number" id="womens-count">Loading...</p>
                 <p>Candidates</p>
             </div>
 
             <div class="dashboard-card">
                 <h3>Executive Positions</h3>
-                <p class="dashboard-number">8</p>
+                <p class="dashboard-number" id="executive-positions">Loading...</p>
                 <p>Positions</p>
             </div>
 
             <div class="dashboard-card">
                 <h3>Women's Wing Positions</h3>
-                <p class="dashboard-number">6</p>
+                <p class="dashboard-number" id="womens-positions">Loading...</p>
                 <p>Positions</p>
             </div>
 
         </div>
+        <h2 class="dashboard-section-title">Submission Activity</h2>
+
+<div class="dashboard-container">
+
+    <div class="dashboard-card">
+        <h3>Executive Submissions</h3>
+        <p class="dashboard-number" id="executive-submissions">Loading...</p>
+        <p>Submissions received</p>
+    </div>
+
+    <div class="dashboard-card">
+        <h3>Women's Wing Submissions</h3>
+        <p class="dashboard-number" id="womens-submissions">Loading...</p>
+        <p>Submissions received</p>
+    </div>
+
+</div>
 
         <h2 class="dashboard-section-title">Management</h2>
 
@@ -109,6 +126,74 @@
     <footer>
         <p>&copy; 2026 Zomi Christian Fellowship Kolkata</p>
     </footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script>
+async function loadDashboardStatistics() {
+
+    const results = await Promise.all([
+
+        supabaseClient
+            .from("demo_candidates")
+            .select("*", { count: "exact", head: true })
+            .eq("election_category", "executive")
+            .eq("is_active", true),
+
+        supabaseClient
+            .from("demo_candidates")
+            .select("*", { count: "exact", head: true })
+            .eq("election_category", "womens")
+            .eq("is_active", true),
+
+        supabaseClient
+            .from("demo_positions")
+            .select("*", { count: "exact", head: true })
+            .eq("election_category", "executive"),
+
+        supabaseClient
+            .from("demo_positions")
+            .select("*", { count: "exact", head: true })
+            .eq("election_category", "womens"),
+
+        supabaseClient
+            .from("demo_submissions")
+            .select("*", { count: "exact", head: true })
+            .eq("election_category", "executive"),
+
+        supabaseClient
+            .from("demo_submissions")
+            .select("*", { count: "exact", head: true })
+            .eq("election_category", "womens")
+
+    ]);
+
+    if (results.some(result => result.error)) {
+        console.error("Dashboard loading error:", results);
+        return;
+    }
+
+    document.getElementById("executive-count").textContent =
+        results[0].count;
+
+    document.getElementById("womens-count").textContent =
+        results[1].count;
+
+    document.getElementById("executive-positions").textContent =
+        results[2].count;
+
+    document.getElementById("womens-positions").textContent =
+        results[3].count;
+
+    document.getElementById("executive-submissions").textContent =
+        results[4].count ?? 0;
+
+    document.getElementById("womens-submissions").textContent =
+        results[5].count ?? 0;
+}
+
+loadDashboardStatistics();
+setInterval(loadDashboardStatistics, 5000);
+</script>
 <script src="script.js"></script>
 </body>
 </html>

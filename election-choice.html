@@ -51,13 +51,13 @@
 
             <div class="election-choice-card">
                 <h3>Executive Committee</h3>
-                <p>25 Candidates | 8 Positions</p>
+               <p id="executive-summary">Loading...</p>
                 <a href="executive-ballot.html" class="view-button">Proceed to Ballot</a>
             </div>
 
             <div class="election-choice-card">
                 <h3>Women's Wing</h3>
-                <p>29 Candidates | 6 Positions</p>
+                <p id="womens-summary">Loading...</p>
                 <a href="womens-ballot.html" class="view-button">Proceed to Ballot</a>
             </div>
 
@@ -68,6 +68,65 @@
     <footer>
         <p>&copy; 2026 Zomi Christian Fellowship Kolkata</p>
     </footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+
+<script>
+async function loadElectionChoices() {
+
+    const executiveCandidates = await supabaseClient
+        .from("demo_candidates")
+        .select("*", { count: "exact", head: true })
+        .eq("election_category", "executive")
+        .eq("is_active", true);
+
+    const womensCandidates = await supabaseClient
+        .from("demo_candidates")
+        .select("*", { count: "exact", head: true })
+        .eq("election_category", "womens")
+        .eq("is_active", true);
+
+    const executivePositions = await supabaseClient
+        .from("demo_positions")
+        .select("*", { count: "exact", head: true })
+        .eq("election_category", "executive");
+
+    const womensPositions = await supabaseClient
+        .from("demo_positions")
+        .select("*", { count: "exact", head: true })
+        .eq("election_category", "womens");
+
+    const results = [
+        executiveCandidates,
+        womensCandidates,
+        executivePositions,
+        womensPositions
+    ];
+
+    if (results.some(result => result.error)) {
+        console.error("Election choice loading error:", results);
+
+        document.getElementById("executive-summary").textContent =
+            "Unable to load information.";
+
+        document.getElementById("womens-summary").textContent =
+            "Unable to load information.";
+
+        return;
+    }
+
+    document.getElementById("executive-summary").textContent =
+        executiveCandidates.count + " Candidates | " +
+        executivePositions.count + " Positions";
+
+    document.getElementById("womens-summary").textContent =
+        womensCandidates.count + " Candidates | " +
+        womensPositions.count + " Positions";
+}
+
+loadElectionChoices();
+</script>
+
 <script src="script.js"></script>
 </body>
 </html>

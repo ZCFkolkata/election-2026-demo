@@ -49,8 +49,7 @@
 
         <h3>Moderator Login</h3>
 
-        <form id="moderator-login-form"
-              onsubmit="window.location.href='moderator-dashboard.html'; return false;">
+        <form id="moderator-login-form">
 
             <label for="moderator-id">Moderator ID</label>
 
@@ -74,6 +73,7 @@
 
         </form>
 
+        <p id="login-message" class="verification-note"></p>
         <p class="verification-note">
             Public Demonstration Only. No actual authentication
             or real election data is used.
@@ -86,6 +86,44 @@
     <footer>
         <p>&copy; 2026 Zomi Christian Fellowship Kolkata</p>
     </footer>
+
+<script>
+document.getElementById("moderator-login-form")
+.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const moderatorId =
+        document.getElementById("moderator-id").value.trim();
+
+    const password =
+        document.getElementById("moderator-password").value;
+
+    const message =
+        document.getElementById("login-message");
+
+    // Fictional demonstration credentials
+    const DEMO_ID = "MOD001";
+    const DEMO_PASSWORD = "demo123";
+
+    if (moderatorId === DEMO_ID &&
+        password === DEMO_PASSWORD) {
+
+        message.textContent = "Demo login successful!";
+
+        setTimeout(function() {
+            window.location.href = "moderator-dashboard.html";
+        }, 1000);
+
+    } else {
+
+        message.textContent =
+            "Invalid Moderator ID or Password.";
+
+    }
+
+});
+</script>
 <script src="script.js"></script>
 </body>
 </html>

@@ -52,22 +52,22 @@
 
             <div class="dashboard-card">
                 <h3>Total Eligible Voters</h3>
-                <p class="dashboard-number">0</p>
+                <p class="dashboard-number" id="total-voters">0</p>
             </div>
 
             <div class="dashboard-card">
-                <h3>Executive Ballots</h3>
-                <p class="dashboard-number">0</p>
+                <h3>Executive Eligible Voters</h3>
+                <p class="dashboard-number" id="executive-ballots">0</p>
             </div>
 
             <div class="dashboard-card">
-                <h3>Women's Wing Ballots</h3>
-                <p class="dashboard-number">0</p>
+                <h3>Women's Wing Eligible Voters</h3>
+                <p class="dashboard-number" id="womens-ballots">0</p>
             </div>
 
             <div class="dashboard-card">
-                <h3>Pending Entitlements</h3>
-                <p class="dashboard-number">0</p>
+                <h3>Total Eligible Entitlements</h3>
+                <p class="dashboard-number" id="pending-entitlements">0</p>
             </div>
 
         </div>
@@ -86,7 +86,7 @@
                     type="text"
                     id="voter-name"
                     placeholder="Enter voter's name"
-                    required
+                    disabled
                 >
 
                 <label for="voter-id">Voter ID</label>
@@ -94,10 +94,10 @@
                     type="text"
                     id="voter-id"
                     placeholder="Enter Voter ID"
-                    required
+                    disabled
                 >
 
-                <button type="submit">Add Voter</button>
+                <button type="button" disabled>Add Voter</button>
 
             </form>
 
@@ -142,6 +142,56 @@
     <footer>
         <p>&copy; 2026 Zomi Christian Fellowship Kolkata</p>
     </footer>
+<script>
+
+// Generate 71 fictional demonstration voters
+const demoVoters = Array.from({ length: 71 }, (_, index) => ({
+    name: `Test Voter ${String(index + 1).padStart(2, "0")}`,
+   id: `DEMO-ZCF${String(index + 1).padStart(2, "0")}`,
+    executive: true,
+    womens: true
+}));
+
+// Calculate statistics
+const total = demoVoters.length;
+const executive = demoVoters.filter(v => v.executive).length;
+const womens = demoVoters.filter(v => v.womens).length;
+
+document.getElementById("total-voters").textContent = total;
+document.getElementById("executive-ballots").textContent = executive;
+document.getElementById("womens-ballots").textContent = womens;
+
+document.getElementById("pending-entitlements").textContent =
+    executive + womens;
+
+// Populate voter table
+const tableBody = document.getElementById("voter-table-body");
+
+tableBody.innerHTML = "";
+
+demoVoters.forEach((voter, index) => {
+
+    const row = document.createElement("tr");
+
+    const values = [
+        index + 1,
+        voter.name,
+        voter.id,
+        "Eligible",
+        "Eligible",
+        "Demo"
+    ];
+
+    values.forEach(value => {
+        const cell = document.createElement("td");
+        cell.textContent = value;
+        row.appendChild(cell);
+    });
+
+    tableBody.appendChild(row);
+});
+
+</script>
 <script src="script.js"></script>
 </body>
 </html>

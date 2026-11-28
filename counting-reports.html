@@ -50,7 +50,7 @@
 
     <div class="management-card">
         <h3>Executive Committee</h3>
-        <p>25 candidates | 8 positions</p>
+       <p id="executive-summary">Loading...</p>
         <p>View candidate-wise vote counts and counting sheets.</p>
         <a href="executive-counting.html" class="view-button">
     View Counting Sheet
@@ -62,7 +62,7 @@
 
     <div class="management-card">
         <h3>Women's Wing</h3>
-        <p>29 candidates | 6 positions</p>
+        <p id="womens-summary">Loading...</p>
         <p>View candidate-wise vote counts and counting sheets.</p>
         <a href="womens-counting.html" class="view-button">
     View Counting Sheet
@@ -79,6 +79,82 @@
     <footer>
         <p>&copy; 2026 Zomi Christian Fellowship Kolkata</p>
     </footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script>
+async function loadCountingSummaries() {
+
+    const [
+        executiveCandidates,
+        womensCandidates,
+        executivePositions,
+        womensPositions,
+        executiveSubmissions,
+        womensSubmissions
+    ] = await Promise.all([
+
+        supabaseClient
+            .from("demo_candidates")
+            .select("*", { count: "exact", head: true })
+            .eq("election_category", "executive")
+            .eq("is_active", true),
+
+        supabaseClient
+            .from("demo_candidates")
+            .select("*", { count: "exact", head: true })
+            .eq("election_category", "womens")
+            .eq("is_active", true),
+
+        supabaseClient
+            .from("demo_positions")
+            .select("*", { count: "exact", head: true })
+            .eq("election_category", "executive"),
+
+        supabaseClient
+            .from("demo_positions")
+            .select("*", { count: "exact", head: true })
+            .eq("election_category", "womens"),
+
+        supabaseClient
+            .from("demo_submissions")
+            .select("*", { count: "exact", head: true })
+            .eq("election_category", "executive"),
+
+        supabaseClient
+            .from("demo_submissions")
+            .select("*", { count: "exact", head: true })
+            .eq("election_category", "womens")
+
+    ]);
+
+    const results = [
+        executiveCandidates,
+        womensCandidates,
+        executivePositions,
+        womensPositions,
+        executiveSubmissions,
+        womensSubmissions
+    ];
+
+    if (results.some(result => result.error)) {
+        console.error("Counting summary loading error:", results);
+        return;
+    }
+
+    document.getElementById("executive-summary").textContent =
+        executiveCandidates.count + " candidates | " +
+        executivePositions.count + " positions | " +
+        (executiveSubmissions.count || 0) + " submissions";
+
+    document.getElementById("womens-summary").textContent =
+        womensCandidates.count + " candidates | " +
+        womensPositions.count + " positions | " +
+        (womensSubmissions.count || 0) + " submissions";
+}
+
+loadCountingSummaries();
+setInterval(loadCountingSummaries, 5000);
+</script>
 <script src="script.js"></script>
 </body>
 </html>
